@@ -17,6 +17,7 @@ import edu.gvsu.cis.convcalc.UnitsConverter.VolumeUnits;
 public class MainActivity extends AppCompatActivity {
 
     public static int SETTINGS_RESULT = 1;
+    public static int HISTORY_RESULT = 1;
 
     private enum Mode {Length, Volume};
 
@@ -165,18 +166,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_settings) {
-            Intent intent = new Intent(MainActivity.this, MySettingsActivity.class);
-            intent.putExtra("mode", mode.toString());
-            intent.putExtra("fromUnits", fromUnits.getText().toString());
-            intent.putExtra("toUnits", toUnits.getText().toString());
+            Intent intent = new Intent(MainActivity.this,
+                    MySettingsActivity.class);
             startActivityForResult(intent, SETTINGS_RESULT );
+            return true;
+        } else if(item.getItemId() == R.id.action_history) {
+            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+            startActivityForResult(intent, HISTORY_RESULT );
             return true;
         }
         return false;
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == SETTINGS_RESULT) {
             this.fromUnits.setText(data.getStringExtra("fromUnits"));
             this.toUnits.setText(data.getStringExtra("toUnits"));
