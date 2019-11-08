@@ -168,6 +168,9 @@ public class MainActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this,
                     MySettingsActivity.class);
+            intent.putExtra("mode", mode.toString());
+            intent.putExtra("fromUnits", fromUnits.getText().toString());
+            intent.putExtra("toUnits", toUnits.getText().toString());
             startActivityForResult(intent, SETTINGS_RESULT );
             return true;
         } else if(item.getItemId() == R.id.action_history) {
