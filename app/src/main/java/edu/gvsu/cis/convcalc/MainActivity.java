@@ -3,6 +3,8 @@ package edu.gvsu.cis.convcalc;
 import android.content.Context;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,11 +23,12 @@ import edu.gvsu.cis.convcalc.dummy.HistoryContent;
 public class MainActivity extends AppCompatActivity {
 
     public static int SETTINGS_RESULT = 1;
-    public static int HISTORY_RESULT = 0;
+    public static int HISTORY_RESULT = 2;
 
     private enum Mode {Length, Volume};
 
     private Mode mode = Mode.Length;
+    private ConstraintLayout constLayout;
     private Button calcButton;
     private Button clearButton;
     private Button modeButton;
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        constLayout = findViewById(R.id.constaintLayout);
 
         calcButton = findViewById(R.id.calcButton);
         clearButton = findViewById(R.id.clearButton);
@@ -98,6 +103,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        constLayout.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                hideKeyboard();
+            }
+        });
 //
     }
 
