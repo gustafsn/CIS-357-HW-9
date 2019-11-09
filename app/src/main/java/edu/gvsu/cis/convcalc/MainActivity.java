@@ -21,7 +21,7 @@ import edu.gvsu.cis.convcalc.dummy.HistoryContent;
 public class MainActivity extends AppCompatActivity {
 
     public static int SETTINGS_RESULT = 1;
-    public static int HISTORY_RESULT = 1;
+    public static int HISTORY_RESULT = 0;
 
     private enum Mode {Length, Volume};
 
@@ -210,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
             this.toUnits.setText(vals[4]);
             this.title.setText(mode.toString() + " Converter");
         }
+
     }
 
 }
